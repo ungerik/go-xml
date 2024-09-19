@@ -55,6 +55,9 @@ func (cfg *Config) GenCode(data ...[]byte) (*Code, error) {
 // associated methods based on a set of XML schema.
 func (cfg *Config) GenAST(files ...string) (*ast.File, error) {
 	data, err := cfg.readFiles(files...)
+	if err != nil {
+		return nil, err
+	}
 	code, err := cfg.GenCode(data...)
 	if err != nil {
 		return nil, err
